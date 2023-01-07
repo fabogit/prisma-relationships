@@ -64,9 +64,8 @@ model Product {
   description String
   price       Int
 
-  // many-to-many references field to category.id
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId String   @unique
+  // many-to-many
+  category Category[]
 
   // many-to-many
   order Order[]

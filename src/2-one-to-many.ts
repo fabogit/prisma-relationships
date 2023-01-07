@@ -21,20 +21,22 @@ async function createOrder() {
 		data: {
 			user: {
 				connect: {
-					id: user.id
-				}
+					id: user.id,
+				},
 			},
 			products: {
 				connect: sampleArray(products).map((product) => ({
-					id: products.id
-				}))
-			}
-		}
+					id: product.id,
+				})),
+			},
+		},
+		include: {
+			user: true,
+		},
 	});
 
 	return { order };
 }
 
-
-console.log("Relationship: one-to-may");
+console.log("Relationship: one-to-many");
 console.log(await createOrder());
