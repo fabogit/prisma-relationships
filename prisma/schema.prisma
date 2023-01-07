@@ -18,6 +18,7 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  order     Order[]
 }
 
 model Profile {
@@ -25,8 +26,50 @@ model Profile {
 
   name String
 
-  user User @relation(fields: [userId], references: [id])
+  // one-to-one references filed to user.id
+  user   User   @relation(fields: [userId], references: [id])
   userId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id String @id @default(cuid())
+
+  // one-to-many references field to user.id
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique
+
+  products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id String @id @default(cuid())
+
+  name String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  product   Product[]
+}
+
+model Product {
+  id String @id @default(cuid())
+
+  name        String
+  description String
+  price       Int
+
+  // many-to-many references field to category.id
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String   @unique
+
+  // many-to-many
+  order Order[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
