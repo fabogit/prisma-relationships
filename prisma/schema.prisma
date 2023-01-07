@@ -52,6 +52,12 @@ model Category {
 
   name String
 
+  // self reference
+  parent   Category? @relation("CategoryToCategory", fields: [parentId], references: [id])
+  parentId String?
+
+  children Category[] @relation("CategoryToCategory")
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   product   Product[]
