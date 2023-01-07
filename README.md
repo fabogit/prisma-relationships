@@ -1,5 +1,7 @@
 # prisma-relationships
 
+rename `renametodotenv` to `.env`
+
 - `npm i`
 
 - `npm run {MY_SCRIPT}` scripts names are: `1`,`2`,`3`,`4`
