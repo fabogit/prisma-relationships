@@ -8,6 +8,8 @@ import { clean } from "./helpers/clean";
  */
 
 async function createProductWithCategories() {
+	await clean();
+
 	const categoriesPromises = Array(10)
 		.fill(null)
 		.map(() => {
